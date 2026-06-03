@@ -202,7 +202,7 @@ def LWSE_duration(da_mask, da_count, time_res=1 / 6):
     gb = da_mask.groupby(da_count)
     # compute the duration of each low wind speed event (by using xarray count function)
     # gb + gb.count(), adds the count (length of array with ones) for each group to all elements in that group.
-    da_duration = ((gb + gb.count(...)) - 1) * da_count * time_res
+    da_duration = ((gb + gb.count(...)) - 1) * da_mask * time_res
     da_duration = da_duration.reset_coords("LWSE_count", drop=True)
     return da_duration.rename("LWSE_duration")
 
